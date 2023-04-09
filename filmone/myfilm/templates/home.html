@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+	<header>
+		<div class="header-left">
+			<h1>{{firstname}}{{lastname}}</h1>
+		</div>
+		<div class="header-right">
+			
+			<a href="{% url 'addfilm'  %}"id="create-btn">+Create Film</a>
+			<a href="{% url 'log_out'  %}" id="create-btn">+logout </a>
+		</div>
+	</header>
+	
+	<main>
+        <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Action</th>
+                <th>Release Date</th>
+                <th>Network</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {%for a in onefilm%}
+
+
+
+
+              <tr>
+                <td>{{a.filmname}}</td>
+                <td><a href="{% url 'showfilm' a.id  %}">show</a>
+                {% if a.filmadder.id == id %}
+                <a href="{% url 'deletefilm' a.id  %}">delete</a>
+                <a href="{% url 'editfilm' a.id  %}">edit</a>
+                {% endif %}
+              </td>
+            
+                <td>{{a.filmdate}}</td>
+                <td>{{a.filmnetwork}}</td>
+              </tr>
+             {%endfor%}
+            </tbody>
+		</table>
+	</main>
+	
+	<script src="script.js"></script>
+</body>
+</html>

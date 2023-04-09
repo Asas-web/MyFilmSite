@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add New Film</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/newfilm.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+  </head>
+  <body>
+    {% if messages%}
+        <ul class="message">
+          {%for message in messages%}
+          <li class="message">
+           {{message}}
+          </li>
+          {%endfor%}
+        </ul>
+        {%endif%}
+    <header>
+      <h1>Add New Film</h1>
+      <div class="header-right">
+			
+        <a href="{% url 'homepage'  %}"id="create-btn">TV Shows</a>
+        <a href="{% url 'log_out'  %}" id="create-btn">+logout </a>
+      </div>
+    </header>
+    <form action='addnewfilm' method='post'>
+      {% csrf_token %}
+      <label for="title">Name:</label>
+      <input type="text" id="title" name="name" required>
+      <br>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
+      <br>
+
+      <label for="release-date">Release Date:</label>
+      <input type="date" id="release-date" name="release-date" required>
+      <br>
+
+      <label for="network">Network:</label>
+      <input type="text" id="network" name="network" required>
+      <br>
+
+      <input type="submit" value="Add Film">
+    </form>
+  </body>
+</html>
